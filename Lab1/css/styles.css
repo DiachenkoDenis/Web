@@ -1,0 +1,173 @@
+:root{
+  --bg: #f5f7fb;
+  --paper: #ffffff;
+  --text: #0f172a;
+  --muted: #475569;
+  --stroke: rgba(15, 23, 42, 0.10);
+  --shadow: 0 12px 30px rgba(15, 23, 42, 0.10);
+  --shadow-soft: 0 8px 18px rgba(15, 23, 42, 0.08);
+  --accent: #2563eb;    
+  --accent2: #10b981;    
+  --radius: 18px;
+}
+html{ scroll-behavior: smooth; }
+body{
+  font-family: ui-sans-serif, system-ui, -apple-system, Segoe UI, Roboto, Arial, sans-serif;
+  background: radial-gradient(900px 450px at 15% 0%, rgba(37,99,235,0.12), transparent 55%),
+              radial-gradient(900px 450px at 85% 10%, rgba(16,185,129,0.10), transparent 55%),
+              var(--bg);
+  color: var(--text);
+  line-height: 1.7;
+}
+.navbar{
+  background: rgba(255,255,255,0.75) !important;
+  backdrop-filter: blur(12px);
+  border-bottom: 1px solid var(--stroke);
+}
+.navbar-brand{
+  font-weight: 800;
+  letter-spacing: -0.2px;
+}
+.navbar-brand span{
+  background: linear-gradient(120deg, var(--accent), var(--accent2));
+  -webkit-background-clip: text;
+  background-clip: text;
+  color: transparent;
+}
+.nav-link{
+  color: rgba(15,23,42,0.75) !important;
+  transition: color .18s ease, transform .18s ease;
+}
+.nav-link:hover{
+  color: rgba(15,23,42,1) !important;
+  transform: translateY(-1px);
+}
+.nav-link.active{
+  color: var(--accent) !important;
+  font-weight: 700;
+}
+
+.hero{
+  padding: 78px 0 60px;
+}
+.hero-card{
+  background: rgba(255,255,255,0.78);
+  border: 1px solid var(--stroke);
+  border-radius: calc(var(--radius) + 6px);
+  box-shadow: var(--shadow);
+  padding: 26px;
+}
+.hero-title{
+  font-weight: 850;
+  letter-spacing: -0.8px;
+  margin-bottom: 10px;
+}
+.hero-sub{
+  color: var(--muted);
+  margin-bottom: 0;
+  max-width: 70ch;
+}
+.badges{
+  display:flex;
+  flex-wrap: wrap;
+  gap: 10px;
+  margin-top: 16px;
+}
+.badge-chip{
+  font-size: .9rem;
+  padding: .4rem .65rem;
+  border-radius: 999px;
+  border: 1px solid var(--stroke);
+  background: rgba(255,255,255,0.9);
+  color: rgba(15,23,42,0.85);
+}
+.badge-chip strong{ color: var(--accent); }
+.section{
+  margin-bottom: 26px;
+}
+.section-card{
+  background: var(--paper);
+  border: 1px solid var(--stroke);
+  border-radius: var(--radius);
+  box-shadow: var(--shadow-soft);
+  padding: 20px;
+}
+.section-title{
+  font-weight: 800;
+  letter-spacing: -0.35px;
+  margin-bottom: 12px;
+}
+.section-title .dot{
+  display:inline-block;
+  width: 10px;
+  height: 10px;
+  border-radius: 4px;
+  margin-right: 10px;
+  background: linear-gradient(120deg, var(--accent), var(--accent2));
+}
+.muted{ color: var(--muted); }
+.img-soft{
+  border-radius: var(--radius);
+  border: 1px solid var(--stroke);
+  box-shadow: var(--shadow-soft);
+  overflow: hidden;
+}
+.img-soft img{
+  width: 100%;
+  display:block;
+  transition: transform .35s ease;
+}
+.img-soft:hover img{ transform: scale(1.03); }
+.table{
+  margin-bottom: 0;
+}
+.table thead th{
+  background: rgba(37,99,235,0.07) !important;
+  border-bottom: 1px solid var(--stroke) !important;
+}
+.table td, .table th{
+  border-color: rgba(15,23,42,0.08) !important;
+}
+.table-hover tbody tr{
+  transition: background .18s ease, transform .18s ease;
+}
+.table-hover tbody tr:hover{
+  background: rgba(16,185,129,0.10) !important;
+  transform: translateX(2px);
+}
+.btn-accent{
+  border-radius: 999px;
+  padding: .6rem 1rem;
+  font-weight: 700;
+  border: 1px solid rgba(37,99,235,0.20);
+  background: linear-gradient(120deg, rgba(37,99,235,1), rgba(16,185,129,1));
+  color: #fff;
+  box-shadow: 0 10px 20px rgba(37,99,235,0.18);
+  transition: transform .18s ease, filter .18s ease;
+}
+.btn-accent:hover{
+  transform: translateY(-2px);
+  filter: brightness(1.02);
+}
+.btn-soft{
+  border-radius: 999px;
+  padding: .6rem 1rem;
+  font-weight: 700;
+  border: 1px solid var(--stroke);
+  background: rgba(255,255,255,0.9);
+  color: rgba(15,23,42,0.9);
+  transition: transform .18s ease, background .18s ease;
+}
+.btn-soft:hover{
+  transform: translateY(-2px);
+  background: rgba(255,255,255,1);
+}
+footer{
+  border-top: 1px solid var(--stroke);
+  background: rgba(255,255,255,0.75);
+  backdrop-filter: blur(12px);
+}
+@media (max-width: 768px){
+  .hero{ padding: 64px 0 44px; }
+  .hero-title{ font-size: 1.9rem; }
+}
