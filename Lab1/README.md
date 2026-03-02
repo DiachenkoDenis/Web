@@ -27,7 +27,7 @@ git clone https://github.com/DiachenkoDenis/Web/tree/main/Lab1
 
 2. Відкрити файл `index.html` у браузері.
 
-## Автор
+## Виконав
 
 Дяченко Денис Дмитрович  
 Група ТВ-42  
