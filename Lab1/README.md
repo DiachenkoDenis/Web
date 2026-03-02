@@ -21,10 +21,8 @@
 ## Як запустити проєкт
 
 1. Клонувати репозиторій:
-
-git clone 
 ```
-https://github.com/DiachenkoDenis/Web/tree/main/Lab1
+git clone https://github.com/DiachenkoDenis/Web/tree/main/Lab1
 ```
 
 2. Відкрити файл `index.html` у браузері.
