@@ -1,0 +1,244 @@
+<!DOCTYPE html>
+<html lang="uk">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <meta name="description" content="Система моніторингу гідроелектростанції" />
+  <meta name="keywords" content="ГЕС, моніторинг, JavaScript, веб-програмування, енергетика" />
+  <title>Моніторинг ГЕС</title>
+
+  <link
+    href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css"
+    rel="stylesheet"
+  />
+  <link rel="stylesheet" href="css/styles.css" />
+</head>
+<body>
+  <nav class="navbar navbar-expand-lg navbar-dark custom-navbar sticky-top">
+    <div class="container">
+      <a class="navbar-brand fw-bold" href="#top">💧 Моніторинг ГЕС</a>
+
+      <button
+        class="navbar-toggler"
+        type="button"
+        data-bs-toggle="collapse"
+        data-bs-target="#navbarNav"
+        aria-controls="navbarNav"
+        aria-expanded="false"
+        aria-label="Перемикач навігації"
+      >
+        <span class="navbar-toggler-icon"></span>
+      </button>
+
+      <div class="collapse navbar-collapse" id="navbarNav">
+        <ul class="navbar-nav ms-auto">
+          <li class="nav-item"><a class="nav-link active" href="#about">Про об'єкт</a></li>
+          <li class="nav-item"><a class="nav-link" href="#monitoring">Моніторинг</a></li>
+          <li class="nav-item"><a class="nav-link" href="#status">Стан системи</a></li>
+          <li class="nav-item"><a class="nav-link" href="#contacts">Контакти</a></li>
+        </ul>
+      </div>
+    </div>
+  </nav>
+
+  <header id="top" class="hero-section">
+    <div class="container">
+      <div class="hero-card">
+        <div class="row align-items-center g-4">
+          <div class="col-lg-7">
+            <p class="hero-label">Практична робота №2</p>
+            <h1 class="hero-title">Гідроелектростанція (ГЕС)</h1>
+            <p class="hero-subtitle">
+              Динамічна вебсторінка для моніторингу параметрів енергетичного об'єкта
+              з ручним та автоматичним оновленням даних у режимі реального часу.
+            </p>
+
+            <div class="hero-tags">
+              <span>Моніторинг</span>
+              <span>JavaScript</span>
+              <span>Автооновлення</span>
+            </div>
+
+            <div class="hero-buttons mt-4">
+              <a href="#monitoring" class="btn btn-main">Перейти до моніторингу</a>
+              <a href="#status" class="btn btn-outline-light">Стан системи</a>
+            </div>
+          </div>
+
+          <div class="col-lg-5">
+            <div class="summary-box">
+              <h3 class="summary-title">Загальний стан</h3>
+              <p class="summary-item">
+                Поточний статус:
+                <span id="overallStatus" class="badge-status normal">Норма</span>
+              </p>
+              <p class="summary-item mb-0">
+                Останнє оновлення:
+                <span id="lastUpdate">--:--:--</span>
+              </p>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </header>
+
+  <main class="container my-5">
+    <section id="about" class="content-box mb-4">
+      <h2 class="section-title">Про об'єкт</h2>
+      <p>
+        Гідроелектростанція є енергетичним об'єктом, на якому електрична енергія
+        виробляється шляхом перетворення енергії водного потоку. Основними елементами
+        ГЕС є водосховище, турбіни, генератори, затвори та системи контролю технічного стану обладнання.
+      </p>
+      <p class="mb-0">
+        На цій вебсторінці реалізовано моніторинг основних параметрів роботи ГЕС за допомогою JavaScript.
+        Дані можуть оновлюватися вручну кнопкою або автоматично через таймер. Для кожного параметра
+        виводиться поточне значення та індикатор стану: норма, попередження або критично.
+      </p>
+    </section>
+
+    <section id="monitoring" class="content-box mb-4">
+      <div class="d-flex flex-wrap justify-content-between align-items-center gap-3 mb-4">
+        <div>
+          <h2 class="section-title mb-1">Моніторинг параметрів</h2>
+          <p class="text-muted mb-0">Оновлення даних в режимі реального часу</p>
+        </div>
+
+        <div class="d-flex flex-wrap gap-2">
+          <button class="btn btn-main" onclick="manualUpdate()">Оновити дані</button>
+          <button class="btn btn-auto" id="autoUpdateBtn" onclick="toggleAutoUpdate()">
+            Увімкнути автооновлення
+          </button>
+        </div>
+      </div>
+
+      <div class="row g-4">
+        <div class="col-md-6 col-xl-4">
+          <div class="monitor-card">
+            <div class="monitor-top">
+              <h5>Рівень води верхнього б'єфу</h5>
+              <span id="statusWaterLevel" class="badge-status normal">Норма</span>
+            </div>
+            <div class="monitor-value"><span id="waterLevel">0</span> м</div>
+            <p class="monitor-text">Нормальний діапазон: 105–118 м</p>
+          </div>
+        </div>
+
+        <div class="col-md-6 col-xl-4">
+          <div class="monitor-card">
+            <div class="monitor-top">
+              <h5>Витрата води</h5>
+              <span id="statusFlowRate" class="badge-status normal">Норма</span>
+            </div>
+            <div class="monitor-value"><span id="flowRate">0</span> м³/с</div>
+            <p class="monitor-text">Нормальний діапазон: 80–180 м³/с</p>
+          </div>
+        </div>
+
+        <div class="col-md-6 col-xl-4">
+          <div class="monitor-card">
+            <div class="monitor-top">
+              <h5>Обертання турбіни</h5>
+              <span id="statusTurbineSpeed" class="badge-status normal">Норма</span>
+            </div>
+            <div class="monitor-value"><span id="turbineSpeed">0</span> об/хв</div>
+            <p class="monitor-text">Нормальний діапазон: 110–140 об/хв</p>
+          </div>
+        </div>
+
+        <div class="col-md-6 col-xl-4">
+          <div class="monitor-card">
+            <div class="monitor-top">
+              <h5>Вироблена потужність</h5>
+              <span id="statusPowerOutput" class="badge-status normal">Норма</span>
+            </div>
+            <div class="monitor-value"><span id="powerOutput">0</span> МВт</div>
+            <p class="monitor-text">Нормальний діапазон: 10–45 МВт</p>
+          </div>
+        </div>
+
+        <div class="col-md-6 col-xl-4">
+          <div class="monitor-card">
+            <div class="monitor-top">
+              <h5>Положення затворів</h5>
+              <span id="statusGatePosition" class="badge-status normal">Норма</span>
+            </div>
+            <div class="monitor-value"><span id="gatePosition">0</span> %</div>
+            <p class="monitor-text">Контроль відкриття гідрозатворів</p>
+          </div>
+        </div>
+
+        <div class="col-md-6 col-xl-4">
+          <div class="monitor-card">
+            <div class="monitor-top">
+              <h5>Стан підшипників турбіни</h5>
+              <span id="statusBearingState" class="badge-status normal">Норма</span>
+            </div>
+            <div class="monitor-value text-state"><span id="bearingState">Справний</span></div>
+            <p class="monitor-text">Оцінка технічного стану вузлів</p>
+          </div>
+        </div>
+
+        <div class="col-md-6 col-xl-4">
+          <div class="monitor-card">
+            <div class="monitor-top">
+              <h5>Вібрація агрегату</h5>
+              <span id="statusVibration" class="badge-status normal">Норма</span>
+            </div>
+            <div class="monitor-value"><span id="vibration">0</span> мм/с</div>
+            <p class="monitor-text">Контроль механічних коливань агрегату</p>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <section id="status" class="content-box mb-4">
+      <h2 class="section-title">Стан системи</h2>
+      <div class="row g-4">
+        <div class="col-md-4">
+          <div class="mini-status success-box">
+            <h6>Норма</h6>
+            <p class="mb-0">Параметр знаходиться в допустимих межах.</p>
+          </div>
+        </div>
+        <div class="col-md-4">
+          <div class="mini-status warning-box">
+            <h6>Попередження</h6>
+            <p class="mb-0">Параметр близький до критичного значення.</p>
+          </div>
+        </div>
+        <div class="col-md-4">
+          <div class="mini-status danger-box">
+            <h6>Критично</h6>
+            <p class="mb-0">Параметр вийшов за межі норми.</p>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <section id="contacts" class="content-box">
+      <h2 class="section-title">Контактна інформація</h2>
+      <div class="row g-4">
+        <div class="col-md-6">
+          <p><strong>Об'єкт:</strong> Гідроелектростанція</p>
+          <p><strong>Адреса:</strong> м. Львів, енергетичний вузол</p>
+        </div>
+        <div class="col-md-6">
+          <p><strong>Телефон:</strong> +380 (95) 955-55-55</p>
+          <p class="mb-0"><strong>Email:</strong> hydro.monitor@energy.ua</p>
+        </div>
+      </div>
+    </section>
+  </main>
+
+  <footer class="footer-block py-4">
+    <div class="container text-center">
+      <p class="mb-0">© 2026 ГЕС. Практична робота №2</p>
+    </div>
+  </footer>
+
+  <script src="js/script.js"></script>
+  <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js"></script>
+</body>
+</html>
