@@ -1,0 +1,191 @@
+<!DOCTYPE html>
+<html lang="uk">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Довідник електроенергетика</title>
+  <link rel="stylesheet" href="style.css" />
+</head>
+<body>
+  <header class="topbar">
+    <div class="container topbar-inner">
+      <div class="logo">Довідник електроенергетика</div>
+      <nav class="nav">
+        <a href="#home">Головна</a>
+        <a href="#articles">Статті</a>
+        <a href="#calculator">Калькулятор</a>
+        <a href="#formulas">Формули</a>
+        <a href="#create">Створити статтю</a>
+      </nav>
+    </div>
+  </header>
+
+  <main>
+    <section id="home" class="hero">
+      <div class="container hero-grid">
+        <div class="hero-text">
+          <h1>Веб довідник з електроенергетики</h1>
+          <p>
+            Інформаційний вебресурс для перегляду статей, формул і коротких
+            пояснень з електротехніки. На сайті також доступний калькулятор
+            для базових розрахунків напруги, струму, потужності та опору.
+          </p>
+          <div class="hero-buttons">
+            <a href="#articles" class="btn">Переглянути статті</a>
+            <a href="#calculator" class="btn btn-secondary">Відкрити калькулятор</a>
+          </div>
+        </div>
+
+        <aside class="hero-side">
+          <div class="info-card">
+            <h3>Можливості сайту</h3>
+            <ul>
+              <li>Перегляд довідкових статей</li>
+              <li>Пояснення формул</li>
+              <li>Базові електротехнічні розрахунки</li>
+              <li>Форма додавання нової статті</li>
+            </ul>
+          </div>
+        </aside>
+      </div>
+    </section>
+
+    <section id="articles" class="section">
+      <div class="container">
+        <div class="section-head">
+          <h2>Популярні статті</h2>
+          <p>Добірка базових тем, які можуть бути корисними користувачу.</p>
+        </div>
+
+        <div class="cards-grid">
+          <article class="card article-card">
+            <span class="tag">Основи</span>
+            <h3>Що таке електрична потужність</h3>
+            <p>
+              Коротке пояснення поняття потужності, одиниць вимірювання та
+              приклади застосування у побуті.
+            </p>
+            <button class="small-btn">Читати далі</button>
+          </article>
+
+          <article class="card article-card">
+            <span class="tag">Формули</span>
+            <h3>Закон Ома простими словами</h3>
+            <p>
+              Як пов’язані напруга, струм і опір, та чому це важливо під час
+              базових розрахунків.
+            </p>
+            <button class="small-btn">Читати далі</button>
+          </article>
+
+          <article class="card article-card">
+            <span class="tag">Практика</span>
+            <h3>Як підібрати потужність приладів</h3>
+            <p>
+              Приклади розрахунків для побутових пристроїв і розуміння
+              загального навантаження.
+            </p>
+            <button class="small-btn">Читати далі</button>
+          </article>
+        </div>
+      </div>
+    </section>
+
+    <section id="calculator" class="section section-alt">
+      <div class="container">
+        <div class="section-head">
+          <h2>Електротехнічний калькулятор</h2>
+          <p>Оберіть тип розрахунку і введіть необхідні значення.</p>
+        </div>
+
+        <div class="card calc-card">
+          <label for="calcType">Тип калькулятора</label>
+          <select id="calcType">
+            <option value="power">Потужність (P = U × I)</option>
+            <option value="current">Струм (I = P / U)</option>
+            <option value="resistance">Опір (R = U / I)</option>
+          </select>
+
+          <div id="inputs" class="inputs"></div>
+
+          <div class="button-row">
+            <button id="calculateBtn" class="btn">Розрахувати</button>
+            <button id="clearBtn" class="btn btn-secondary" type="button">Очистити</button>
+          </div>
+
+          <p id="message" class="message"></p>
+
+          <div id="resultBox" class="result-box hidden">
+            <h3>Результат розрахунку</h3>
+            <p id="resultText"></p>
+            <p id="formulaText" class="formula-text"></p>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <section id="formulas" class="section">
+      <div class="container">
+        <div class="section-head">
+          <h2>Довідник формул</h2>
+          <p>Короткі формули, які використовуються у вбудованому калькуляторі.</p>
+        </div>
+
+        <div class="cards-grid">
+          <div class="card formula-card">
+            <h3>P = U × I</h3>
+            <p>Формула для розрахунку електричної потужності.</p>
+          </div>
+
+          <div class="card formula-card">
+            <h3>I = P / U</h3>
+            <p>Формула для розрахунку сили струму.</p>
+          </div>
+
+          <div class="card formula-card">
+            <h3>R = U / I</h3>
+            <p>Формула для розрахунку електричного опору.</p>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <section id="create" class="section section-alt">
+      <div class="container">
+        <div class="section-head">
+          <h2>Створення статті</h2>
+          <p>
+            У перспективі користувач зможе додавати власні матеріали та
+            поповнювати довідник новими статтями.
+          </p>
+        </div>
+
+        <div class="card create-card">
+          <label for="articleTitle">Назва статті</label>
+          <input type="text" id="articleTitle" placeholder="Введіть назву статті" />
+
+          <label for="articleCategory">Категорія</label>
+          <select id="articleCategory">
+            <option>Основи електротехніки</option>
+            <option>Формули</option>
+            <option>Практичні поради</option>
+          </select>
+
+          <label for="articleText">Текст статті</label>
+          <textarea id="articleText" rows="6" placeholder="Введіть текст майбутньої статті"></textarea>
+
+          <button class="btn" type="button">Опублікувати</button>
+        </div>
+      </div>
+    </section>
+  </main>
+
+  <footer class="footer">
+    <div class="container">
+      <p>Довідник електроенергетика</p>
+    </div>
+  </footer>
+
+  <script src="script.js"></script>
+</body>
+</html>
