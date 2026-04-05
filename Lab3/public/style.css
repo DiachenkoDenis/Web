@@ -1,1 +1,223 @@
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
 
+:root {
+  --bg-main: #0f172a;
+  --bg-secondary: #111827;
+  --card-bg: rgba(255, 255, 255, 0.95);
+  --text-main: #0f172a;
+  --text-soft: #475569;
+  --accent: #2563eb;
+  --accent-2: #10b981;
+  --danger: #ef4444;
+  --border: #dbe3ee;
+  --shadow: 0 12px 30px rgba(15, 23, 42, 0.12);
+  --radius: 18px;
+}
+
+body {
+  font-family: "Segoe UI", Tahoma, Geneva, Verdana, sans-serif;
+  background:
+    radial-gradient(circle at top left, rgba(37, 99, 235, 0.2), transparent 25%),
+    radial-gradient(circle at top right, rgba(16, 185, 129, 0.16), transparent 25%),
+    linear-gradient(135deg, var(--bg-main), var(--bg-secondary));
+  min-height: 100vh;
+  padding: 24px;
+  color: #fff;
+}
+
+.container {
+  max-width: 1250px;
+  margin: 0 auto;
+}
+
+header {
+  background: rgba(255, 255, 255, 0.1);
+  border: 1px solid rgba(255, 255, 255, 0.14);
+  backdrop-filter: blur(10px);
+  border-radius: 22px;
+  padding: 28px;
+  margin-bottom: 22px;
+  box-shadow: var(--shadow);
+}
+
+header h1 {
+  font-size: 2rem;
+  margin-bottom: 8px;
+}
+
+header p {
+  color: #dbeafe;
+}
+
+main {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 22px;
+}
+
+section {
+  background: var(--card-bg);
+  color: var(--text-main);
+  border-radius: var(--radius);
+  padding: 26px;
+  box-shadow: var(--shadow);
+}
+
+section h2 {
+  margin-bottom: 20px;
+  padding-bottom: 10px;
+  border-bottom: 2px solid #dbeafe;
+  color: var(--accent);
+}
+
+.form-group {
+  margin-bottom: 18px;
+}
+
+label {
+  display: block;
+  margin-bottom: 8px;
+  font-weight: 600;
+  color: #334155;
+}
+
+input,
+select,
+textarea {
+  width: 100%;
+  padding: 12px 14px;
+  border: 2px solid var(--border);
+  border-radius: 12px;
+  font-size: 15px;
+  transition: border-color 0.25s ease, box-shadow 0.25s ease;
+}
+
+input:focus,
+select:focus,
+textarea:focus {
+  outline: none;
+  border-color: var(--accent);
+  box-shadow: 0 0 0 4px rgba(37, 99, 235, 0.12);
+}
+
+textarea {
+  resize: vertical;
+  min-height: 90px;
+}
+
+.form-row {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 16px;
+}
+
+.form-actions {
+  display: flex;
+  gap: 12px;
+  margin-top: 22px;
+}
+
+.btn {
+  border: none;
+  border-radius: 12px;
+  padding: 12px 22px;
+  font-size: 15px;
+  font-weight: 700;
+  cursor: pointer;
+  transition: transform 0.2s ease, filter 0.2s ease;
+}
+
+.btn:hover {
+  transform: translateY(-2px);
+}
+
+.btn-primary {
+  background: linear-gradient(135deg, var(--accent), var(--accent-2));
+  color: white;
+}
+
+.btn-secondary {
+  background: #e2e8f0;
+  color: #1e293b;
+}
+
+.btn-delete {
+  margin-top: 12px;
+  background: var(--danger);
+  color: white;
+  padding: 8px 14px;
+  font-size: 14px;
+}
+
+.message {
+  margin-top: 18px;
+  padding: 14px 16px;
+  border-radius: 12px;
+  display: none;
+  font-weight: 600;
+}
+
+.message.success {
+  display: block;
+  background: #dcfce7;
+  color: #166534;
+  border: 1px solid #86efac;
+}
+
+.message.error {
+  display: block;
+  background: #fee2e2;
+  color: #991b1b;
+  border: 1px solid #fca5a5;
+}
+
+.plants-list {
+  display: flex;
+  flex-direction: column;
+  gap: 16px;
+}
+
+.plant-card {
+  border: 2px solid #e2e8f0;
+  border-radius: 16px;
+  padding: 18px;
+  transition: border-color 0.25s ease, box-shadow 0.25s ease;
+}
+
+.plant-card:hover {
+  border-color: #93c5fd;
+  box-shadow: 0 8px 20px rgba(37, 99, 235, 0.08);
+}
+
+.plant-card h3 {
+  color: var(--accent);
+  margin-bottom: 10px;
+}
+
+.plant-card p {
+  margin: 6px 0;
+  color: var(--text-soft);
+}
+
+.label {
+  font-weight: 700;
+  color: #0f172a;
+}
+
+.empty-text {
+  color: #94a3b8;
+}
+
+@media (max-width: 980px) {
+  main {
+    grid-template-columns: 1fr;
+  }
+
+  .form-row {
+    grid-template-columns: 1fr;
+  }
+}
