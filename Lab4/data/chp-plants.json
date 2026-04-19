@@ -1,1 +1,38 @@
-
+[
+  {
+    "id": 1,
+    "name": "Київська ТЕЦ-1",
+    "electricPower": 120,
+    "thermalPower": 185,
+    "fuelType": "gas",
+    "fuelConsumption": 14.2,
+    "efficiency": 81.5,
+    "emissions": 25.1,
+    "steamPressure": 9.6,
+    "status": "maintenance"
+  },
+  {
+    "id": 4,
+    "name": "Львівська ТЕЦ-6",
+    "electricPower": 58,
+    "thermalPower": 198,
+    "fuelType": "biomass",
+    "fuelConsumption": 1.4,
+    "efficiency": 8.2,
+    "emissions": 18.6,
+    "steamPressure": 0.8,
+    "status": "standby"
+  },
+  {
+    "id": 5,
+    "name": "Житомирська ТЕЦ-2",
+    "electricPower": 108,
+    "thermalPower": 21,
+    "fuelType": "biomass",
+    "fuelConsumption": 21.6,
+    "efficiency": 33.1,
+    "emissions": 41.2,
+    "steamPressure": 21.9,
+    "status": "standby"
+  }
+]
