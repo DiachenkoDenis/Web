@@ -1,0 +1,101 @@
+<!DOCTYPE html>
+<html lang="uk">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Lab4 REST API</title>
+  <link rel="stylesheet" href="style.css" />
+</head>
+<body>
+  <div class="container">
+    <header class="hero">
+      <div class="hero-badge">Практична робота №4</div>
+      <h1>REST API для моніторингу ТЕЦ</h1>
+    </header>
+
+    <section class="card">
+      <h2>Об’єкт автоматизації</h2>
+      <p>
+        Варіант 6 - теплоелектроцентраль (ТЕЦ). API дозволяє отримувати,
+        створювати, оновлювати та видаляти дані про когенераційні установки,
+        а також переглядати дані про паливо та викиди.
+      </p>
+    </section>
+
+    <section class="card">
+      <h2>Доступні endpoints</h2>
+      <div class="endpoint-list">
+        <a href="/api/chp-plants" target="_blank" class="endpoint get">GET /api/chp-plants</a>
+        <a href="/api/chp-plants/1" target="_blank" class="endpoint get">GET /api/chp-plants/1</a>
+        <a href="/api/chp-plants/1/fuel" target="_blank" class="endpoint get">GET /api/chp-plants/1/fuel</a>
+        <a href="/api/chp-plants/1/emissions" target="_blank" class="endpoint get">GET /api/chp-plants/1/emissions</a>
+        <div class="endpoint post">POST /api/chp-plants</div>
+        <div class="endpoint post">POST /api/chp-plants/1/readings</div>
+        <div class="endpoint put">PUT /api/chp-plants/1</div>
+        <div class="endpoint patch">PATCH /api/chp-plants/1</div>
+        <div class="endpoint delete">DELETE /api/chp-plants/1</div>
+      </div>
+    </section>
+
+    <section class="grid">
+      <div class="card">
+        <h2>Підтримувані параметри</h2>
+        <ul>
+          <li>name — назва ТЕЦ</li>
+          <li>electricPower — електрична потужність</li>
+          <li>thermalPower — теплова потужність</li>
+          <li>fuelType — тип палива</li>
+          <li>fuelConsumption — витрата палива</li>
+          <li>efficiency — ККД</li>
+          <li>emissions — викиди CO₂</li>
+          <li>steamPressure — тиск пари</li>
+          <li>status — стан роботи</li>
+        </ul>
+      </div>
+
+      <div class="card">
+        <h2>Приклади фільтрації</h2>
+        <div class="example-box">
+          <p><strong>За статусом:</strong></p>
+          <code>/api/chp-plants?status=active</code>
+
+          <p><strong>За типом палива:</strong></p>
+          <code>/api/chp-plants?fuelType=gas</code>
+
+          <p><strong>Пошук по назві:</strong></p>
+          <code>/api/chp-plants?search=Київ</code>
+
+          <p><strong>Сортування:</strong></p>
+          <code>/api/chp-plants?sortBy=emissions&order=desc</code>
+        </div>
+      </div>
+    </section>
+
+    <section class="card">
+      <h2>Статус API</h2>
+      <p id="statusText">Перевірка з’єднання...</p>
+    </section>
+  </div>
+
+  <script>
+    fetch("/api/chp-plants")
+      .then((response) => {
+        if (!response.ok) {
+          throw new Error("API не відповідає");
+        }
+
+
+        
+        return response.json();
+      })
+      .then((data) => {
+        document.getElementById("statusText").textContent =
+          `API працює коректно. У системі зараз ${data.length} запис(ів).`;
+      })
+      .catch(() => {
+        document.getElementById("statusText").textContent =
+          "Помилка з’єднання з API.";
+      });
+  </script>
+</body>
+</html>
