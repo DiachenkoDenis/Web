@@ -79,6 +79,7 @@ function calculate() {
       `Потужність: ${power.toFixed(2)} Вт`,
       `Формула: P = U × I = ${voltage} × ${current}`
     );
+    addCalculationToChart("Потужність", power);
   }
 
   if (type === "current") {
@@ -100,6 +101,7 @@ function calculate() {
       `Струм: ${current.toFixed(2)} А`,
       `Формула: I = P / U = ${power} / ${voltage}`
     );
+    addCalculationToChart("Струм", current);
   }
 
   if (type === "resistance") {
@@ -121,6 +123,7 @@ function calculate() {
       `Опір: ${resistance.toFixed(2)} Ом`,
       `Формула: R = U / I = ${voltage} / ${current}`
     );
+    addCalculationToChart("Опір", resistance);
   }
 }
 
@@ -135,3 +138,72 @@ calculateBtn.addEventListener("click", calculate);
 clearBtn.addEventListener("click", clearForm);
 
 renderInputs();
+const articlesList = document.getElementById("articlesList");
+
+async function loadArticles() {
+  try {
+    const response = await fetch("/api/articles");
+    const articles = await response.json();
+
+    articlesList.innerHTML = "";
+
+    if (articles.length === 0) {
+      articlesList.innerHTML = "<p>Поки що статей немає.</p>";
+      return;
+    }
+
+    articles.forEach(article => {
+      const articleCard = document.createElement("article");
+      articleCard.className = "card article-card";
+
+      articleCard.innerHTML = `
+        <span class="tag">${article.category || "Без категорії"}</span>
+        <h3>${article.title}</h3>
+        <p>${article.content}</p>
+        <small>Автор: ${article.author_name || "Невідомо"}</small>
+        <button class="small-btn">Читати далі</button>
+      `;
+
+      articlesList.appendChild(articleCard);
+    });
+  } catch (error) {
+    articlesList.innerHTML = "<p>Не вдалося завантажити статті.</p>";
+    console.log(error);
+  }
+}
+
+loadArticles();
+const chartCanvas = document.getElementById("calculationChart");
+
+let calculationLabels = [];
+let calculationValues = [];
+
+let calculationChart = new Chart(chartCanvas, {
+  type: "line",
+  data: {
+    labels: calculationLabels,
+    datasets: [
+      {
+        label: "Результати розрахунків",
+        data: calculationValues,
+        borderWidth: 2,
+        tension: 0.3
+      }
+    ]
+  },
+  options: {
+    responsive: true,
+    scales: {
+      y: {
+        beginAtZero: true
+      }
+    }
+  }
+});
+
+function addCalculationToChart(label, value) {
+  calculationLabels.push(label);
+  calculationValues.push(value);
+
+  calculationChart.update();
+}
