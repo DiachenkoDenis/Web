@@ -51,45 +51,17 @@
     </section>
 
     <section id="articles" class="section">
-      <div class="container">
-        <div class="section-head">
-          <h2>Популярні статті</h2>
-          <p>Добірка базових тем, які можуть бути корисними користувачу.</p>
-        </div>
-
-        <div class="cards-grid">
-          <article class="card article-card">
-            <span class="tag">Основи</span>
-            <h3>Що таке електрична потужність</h3>
-            <p>
-              Коротке пояснення поняття потужності, одиниць вимірювання та
-              приклади застосування у побуті.
-            </p>
-            <button class="small-btn">Читати далі</button>
-          </article>
-
-          <article class="card article-card">
-            <span class="tag">Формули</span>
-            <h3>Закон Ома простими словами</h3>
-            <p>
-              Як пов’язані напруга, струм і опір, та чому це важливо під час
-              базових розрахунків.
-            </p>
-            <button class="small-btn">Читати далі</button>
-          </article>
-
-          <article class="card article-card">
-            <span class="tag">Практика</span>
-            <h3>Як підібрати потужність приладів</h3>
-            <p>
-              Приклади розрахунків для побутових пристроїв і розуміння
-              загального навантаження.
-            </p>
-            <button class="small-btn">Читати далі</button>
-          </article>
-        </div>
+    <div class="container">
+      <div class="section-head">
+        <h2>Популярні статті</h2>
+        <p>Добірка базових тем, які можуть бути корисними користувачу.</p>
       </div>
-    </section>
+
+      <div id="articlesList" class="cards-grid">
+        <p>Завантаження статей...</p>
+      </div>
+    </div>
+  </section>
 
     <section id="calculator" class="section section-alt">
       <div class="container">
@@ -119,6 +91,10 @@
             <h3>Результат розрахунку</h3>
             <p id="resultText"></p>
             <p id="formulaText" class="formula-text"></p>
+          </div>
+            <div class="chart-box">
+            <h3>Графік останніх розрахунків</h3>
+            <canvas id="calculationChart"></canvas>
           </div>
         </div>
       </div>
@@ -185,7 +161,7 @@
       <p>Довідник електроенергетика</p>
     </div>
   </footer>
-
+  <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
   <script src="script.js"></script>
 </body>
 </html>
