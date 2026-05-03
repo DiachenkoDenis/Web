@@ -1,1 +1,88 @@
+<!DOCTYPE html>
+<html lang="uk">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>BESS Monitor</title>
+  <link rel="stylesheet" href="style.css" />
+  <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+</head>
+<body>
+  <div class="container">
+    <header class="hero">
+      <span class="badge">Практична робота №5</span>
+      <h1>Моніторинг системи акумулювання енергії BESS</h1>
+      <p>
+        Клієнтський веб-додаток для завантаження та візуалізації даних
+        Battery Energy Storage System у реальному часі.
+      </p>
+    </header>
 
+    <main>
+      <section class="cards">
+        <div class="card">
+          <h3>Рівень заряду</h3>
+          <div class="battery-box">
+            <div class="battery">
+              <div id="chargeFill" class="battery-fill"></div>
+            </div>
+            <h2 id="chargeLevel">-- %</h2>
+          </div>
+          <p id="chargeStatus">Очікування даних...</p>
+        </div>
+
+        <div class="card">
+          <h3>Поточна потужність</h3>
+          <h2 id="powerValue">-- кВт</h2>
+          <p id="modeValue">Режим: --</p>
+        </div>
+
+        <div class="card">
+          <h3>Температура батареї</h3>
+          <h2 id="temperatureValue">-- °C</h2>
+          <div class="temp-indicator">
+            <div id="temperatureFill" class="temp-fill"></div>
+          </div>
+          <p id="temperatureStatus">Стан: --</p>
+        </div>
+      </section>
+
+      <section class="panel">
+        <div class="panel-head">
+          <h2>Графік потужності заряду/розряду</h2>
+          <button id="refreshBtn">Оновити дані</button>
+        </div>
+        <canvas id="powerChart"></canvas>
+      </section>
+
+      <section class="panel">
+        <h2>Таблиця параметрів батарей</h2>
+        <div class="table-wrapper">
+          <table>
+            <thead>
+              <tr>
+                <th>Параметр</th>
+                <th>Значення</th>
+                <th>Одиниці</th>
+              </tr>
+            </thead>
+            <tbody id="paramsTable">
+              <tr>
+                <td colspan="3">Дані завантажуються...</td>
+              </tr>
+            </tbody>
+          </table>
+        </div>
+      </section>
+
+      <section class="panel">
+        <h2>Статус підключення</h2>
+        <p id="apiStatus">Перевірка API...</p>
+        <p>Останнє оновлення: <span id="lastUpdate">--</span></p>
+      </section>
+    </main>
+  </div>
+
+  <script src="app.js"></script>
+</body>
+</html>
